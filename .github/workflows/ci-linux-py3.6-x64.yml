@@ -36,3 +36,4 @@ jobs:
       run: |
         echo "All the following files are not correctly formatted"
         echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT}}
+        exit 1
