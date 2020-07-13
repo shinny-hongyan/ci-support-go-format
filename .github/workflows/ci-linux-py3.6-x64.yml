@@ -26,6 +26,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: gofmt
+      uses: Jerome1337/gofmt-action@v1.0.2
+      with:
+        gofmt-path: '.'
+        
+    - name: gofmt
       id: gofmtchk
       run: |
         echo "::set-output name=GOFMT_OUTPUT::$(find . -name "*.go")"
