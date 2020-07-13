@@ -30,9 +30,9 @@ jobs:
       run: |
         echo "::set-output name=GOFMT_OUTPUT::$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)"
         echo "gofmt finished "
-        
+
     - name: gofmt check
       if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
       run: |
         echo "All the following files are not correctly formatted"
-        echo "${steps.gofmtchk.outputs.GOFMT_OUTPUT}"
+        echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT}}
