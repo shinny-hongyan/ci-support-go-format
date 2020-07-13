@@ -29,7 +29,13 @@ jobs:
       id: gofmtchk
       run: |
         echo "::set-output name=GOFMT_OUTPUT::$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)"
+        echo "::set-output name=GOFMT_OUTPUT_CNT::$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt | wc -l)"
         echo "gofmt finished "
+
+    - name: print var
+      run: |
+        echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT_CNT}}
+        echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT}}
 
     - name: gofmt check
       if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
