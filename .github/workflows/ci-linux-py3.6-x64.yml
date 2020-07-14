@@ -24,7 +24,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-        
+
+    - name: gofmt 0
+      uses: shinny-hongyan/gofmt-action
+      with:
+        gofmt-path: '.'
+
     - name: gofmt
       shell: bash
       id: gofmtchk
