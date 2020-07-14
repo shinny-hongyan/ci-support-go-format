@@ -25,6 +25,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Set up Go 1.13.x
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13.x
+
     - name: gofmt 0
       uses: shinny-hongyan/gofmt-action@master
       with:
