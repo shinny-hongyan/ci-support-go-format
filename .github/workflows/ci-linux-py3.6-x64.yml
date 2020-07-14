@@ -24,28 +24,23 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Set up Go 1.13.x
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.13.x
-
-    - name: gofmt 0
-      uses: shinny-hongyan/gofmt-action@master
-      with:
-        gofmt-path: '.'
-
+        
     - name: gofmt
       shell: bash
       id: gofmtchk
       run: |
         REPORT=$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)
-        echo "::set-env name=GOFMT_OUTPUT::$REPORT"
-        echo "All the following files are not correctly formatted"
         echo $REPORT
-        
+        REPORT="${REPORT//'%'/'%25'}"
+        REPORT="${REPORT//$'\n'/'%0A'}"
+        REPORT="${REPORT//$'\r'/'%0D'}"
+        echo $REPORT
+        echo "::set-output name=GOFMT_OUTPUT::$REPORT"
 
     - name: gofmt 2
+      if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
       shell: bash
       run: |
+        echo "All the following files are not correctly formatted"
+        echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT}}
         exit 1
