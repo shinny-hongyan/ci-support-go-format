@@ -37,10 +37,6 @@ jobs:
         echo "::set-output name=GOFMT_OUTPUT::$REPORT"
         echo "gofmt finished "
 
-    - name: print var
-      run: |
-        echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT}}
-
     - name: gofmt check
       if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
       run: |
