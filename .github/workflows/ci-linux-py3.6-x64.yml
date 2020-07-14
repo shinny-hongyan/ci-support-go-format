@@ -34,6 +34,8 @@ jobs:
         REPORT="${REPORT//'%'/'%25'}"
         REPORT="${REPORT//$'\n'/'%0A'}"
         REPORT="${REPORT//$'\r'/'%0D'}"
+        echo "------------------------------------------------------------------"
+        echo $REPORT
         echo "::set-output name=GOFMT_OUTPUT::$REPORT"
         echo "gofmt finished "
 
