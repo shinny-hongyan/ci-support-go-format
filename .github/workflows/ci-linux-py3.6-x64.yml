@@ -26,12 +26,10 @@ jobs:
       uses: actions/checkout@v2
         
     - name: gofmt
+      shell: bash
       id: gofmtchk
       run: |
-        REPORT = "$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt | wc -l)"
-        REPORT="${REPORT//'%'/'%25'}"
-        REPORT="${REPORT//$'\n'/'%0A'}"
-        REPORT="${REPORT//$'\r'/'%0D'}"
+        export REPORT = `find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt`
         echo "::set-output name=GOFMT_OUTPUT::$REPORT"
         echo "gofmt finished "
 
