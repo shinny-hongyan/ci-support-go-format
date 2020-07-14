@@ -28,7 +28,7 @@ jobs:
     - name: gofmt
       id: gofmtchk
       run: |
-        REPORT = $(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt | wc -l)
+        REPORT = "$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt | wc -l)"
         REPORT="${REPORT//'%'/'%25'}"
         REPORT="${REPORT//$'\n'/'%0A'}"
         REPORT="${REPORT//$'\r'/'%0D'}"
