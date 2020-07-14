@@ -26,6 +26,6 @@ jobs:
       uses: actions/checkout@v2
 
     - name: golint format check
-      uses: shinny-hongyan/gofmt-action@master
+      uses: Mushus/golangci-linter@v1
       with:
-        gofmt-path: '.'
+        basePath: './...'
