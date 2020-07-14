@@ -29,7 +29,7 @@ jobs:
       shell: bash
       id: gofmtchk
       run: |
-        REPORT=$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)
+        REPORT=$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 -i go fmt {} 2>&1)
         
         echo "::set-env name=GOFMT_OUTPUT::|$REPORT"
         echo "All the following files are not correctly formatted"
