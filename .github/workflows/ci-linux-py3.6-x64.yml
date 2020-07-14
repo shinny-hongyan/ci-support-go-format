@@ -25,7 +25,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: golint format check
-      uses: Mushus/golangci-linter@v1
+    - name: static check
+      uses: Jerome1337/gofmt-action@v1.0.2
       with:
-        basePath: './...'
+        gofmt-path: './...'
