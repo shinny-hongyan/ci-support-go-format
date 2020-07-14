@@ -36,6 +36,7 @@ jobs:
         REPORT="${REPORT//$'\r'/'%0D'}"
         echo "----------------------------------------------"
         echo $REPORT
+        runner set-output --name report1 --value "$REPORT"
         echo "::set-output name=GOFMT_OUTPUT::$REPORT"
         echo "::set-env name=REPORT::$REPORT"
         echo "gofmt finished "
