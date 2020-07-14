@@ -30,15 +30,12 @@ jobs:
       id: gofmtchk
       run: |
         REPORT=$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)
-        echo $REPORT
-
-        echo $REPORT
         echo "::set-output name=GOFMT_OUTPUT::$REPORT"
-
-    - name: gofmt 2
-      if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
+        echo "All the following files are not correctly formatted"
+        echo $REPORT
+        
+    - if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
       shell: bash
       run: |
-        echo "All the following files are not correctly formatted"
-        echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT}}
+        echo "files are not correctly formatted, CI exited"
         exit 1
