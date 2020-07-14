@@ -31,7 +31,7 @@ jobs:
       run: |
         REPORT=$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)
         
-        echo "::set-env name=GOFMT_OUTPUT::$REPORT"
+        echo "::set-env name=GOFMT_OUTPUT::|$REPORT"
         echo "All the following files are not correctly formatted"
         echo $REPORT
         
