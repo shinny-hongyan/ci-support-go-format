@@ -25,17 +25,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: gofmt
-      shell: bash
-      id: gofmtchk
-      run: |
-        echo "All the following files are not correctly formatted"
-        REPORT=$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)
-        echo "::set-output name=GOFMT_OUTPUT::$REPORT"
-        
-    - if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
-      shell: bash
-      run: |
-        echo "files are not correctly formatted, CI exited"
-        echo ${{ format('{0}', steps.gofmtchk.outputs.GOFMT_OUTPUT) }}
-        exit 1
+    - name: golint format check
+      uses: Jerome1337/golint-action@v1.0.2
+      with:
+        golint-path: './...'
