@@ -24,11 +24,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: gofmt
-      uses: Jerome1337/gofmt-action@v1.0.2
-      with:
-        gofmt-path: '.'
         
     - name: gofmt
       id: gofmtchk
