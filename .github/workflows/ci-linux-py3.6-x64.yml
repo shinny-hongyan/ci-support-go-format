@@ -40,8 +40,9 @@ jobs:
         echo "::set-env name=REPORT::$REPORT"
         echo "gofmt finished "
 
+    - name: gofmt 2
       if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
-    - shell: bash
+      shell: bash
       run: |
         echo "All the following files are not correctly formatted"
         echo ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT}}
