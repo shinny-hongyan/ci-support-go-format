@@ -30,11 +30,12 @@ jobs:
       id: gofmtchk
       run: |
         REPORT=$(find . -name "*.go" | grep -v vendor | xargs -L1 -P8 go fmt)
+        echo "::set-env name=GOFMT_OUTPUT::$REPORT"
         echo "All the following files are not correctly formatted"
         echo $REPORT
-        echo "::set-output name=GOFMT_OUTPUT::$REPORT"
+        
 
-    - if: ${{ steps.gofmtchk.outputs.GOFMT_OUTPUT != '' }}
+    - name: gofmt 2
       shell: bash
       run: |
         exit 1
