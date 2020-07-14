@@ -24,7 +24,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-        
+
+    - name: go lint
+      uses: shinny-hongyan/golint-action@master
+      with:
+        gofmt-path: '.'
+
     - name: gofmt
       shell: bash
       id: gofmtchk
